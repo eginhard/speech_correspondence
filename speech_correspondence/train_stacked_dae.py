@@ -32,11 +32,11 @@ parameter_dict_ = {
     "dataset_npy_fn": "../../../features/buckeye/mfcc/numpy/buckeye.mfcc.cmvn_dd.npy",
     "models_basedir": "models/",
     "dim_input": 39,
-    "layer_spec_str": "[100] * 9",
+    "layer_spec_str": "[100] * 8 + [39]",
     "corruption": 0,
-    "max_epochs": 30,
-    "batch_size": 4096,
-    "learning_rate": 0.004,
+    "max_epochs": 5,
+    "batch_size": 256,
+    "learning_rate": 0.00025,
     }
 
 
@@ -75,7 +75,7 @@ def train(parameter_dict):
         "batch_size": parameter_dict["batch_size"],
         "max_epochs": parameter_dict["max_epochs"],
         "learning_rate": parameter_dict["learning_rate"],
-        "save_path": parameter_dict["models_basedir"] + model_dir,
+        "save_path": os.path.join(parameter_dict["models_basedir"], model_dir),
         "run_id": run_id,
         "tied_weights": False
         }

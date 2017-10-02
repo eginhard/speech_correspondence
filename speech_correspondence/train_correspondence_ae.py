@@ -30,14 +30,14 @@ parameter_dict_ = {
     "dataset_npy_fn_y": "../../data/input/mfcc_train_htk_word2_frames.std80k.npy",
     "models_basedir": "models/",
     "dim_input": 39,
-    "layer_spec_str": "[100] * 9",
+    "layer_spec_str": "[100] * 8 + [39]",
     "dae_corruption": 0,  # these dae parameters specify which pretrained model to use
     "dae_max_epochs": 5,
-    "max_epochs": 120,
-    "batch_size": 2048,
-    "learning_rate": 0.064,
+    "max_epochs": 60,
+    "batch_size": 256,
+    "learning_rate": 0.000025,
     "start_from_scratch": False,  # do not initialize from other model, but start from scratch
-    "reverse": False,  # do pairs both ways
+    "reverse": True,  # do pairs both ways
     }
 
 
@@ -81,7 +81,7 @@ def train(parameter_dict):
         "batch_size": parameter_dict["batch_size"],
         "max_epochs": parameter_dict["max_epochs"],
         "learning_rate": parameter_dict["learning_rate"],
-        "save_path": parameter_dict["models_basedir"] + model_dir,
+        "save_path": os.path.join(parameter_dict["models_basedir"], model_dir),
         "run_id": run_id,
         }
     load_dae_basename = path.join(correspondence_ae_parameter_dict["save_path"], "dae")
