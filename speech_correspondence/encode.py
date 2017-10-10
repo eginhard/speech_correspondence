@@ -22,9 +22,6 @@ import theano.tensor as T
 
 theano.gof.compilelock.set_lock_status(False)
 
-output_dir = "encoded/"
-
-
 #-----------------------------------------------------------------------------#
 #                              UTILITY FUNCTIONS                              #
 #-----------------------------------------------------------------------------#
@@ -34,6 +31,7 @@ def check_argv():
     parser = argparse.ArgumentParser(description=__doc__.strip().split("\n")[0], add_help=False)
     parser.add_argument("input_fn", help="test data to encode in .npz format")
     parser.add_argument("model_fn", help="model to use for encoding in .pkl format")
+    parser.add_argument("output_dir", help="output directory to store the encoded file")
     parser.add_argument(
         "--strip_dims", default=None, type=int,
         help="only keep this many dimensions of each row (useful for stripping off deltas) "
@@ -106,10 +104,10 @@ def main():
     model_dir, model_basename = path.split(args.model_fn)
     model_basename = path.splitext(model_basename)[0]
     model_basename = path.split(model_dir)[-1] + "." + model_basename
-    if not path.isdir(output_dir):
-        os.makedirs(output_dir)
+    if not path.isdir(args.output_dir):
+        os.makedirs(args.output_dir)
     encoded_fn = path.join(
-        output_dir, 
+        args.output_dir,
         "encoded." + input_basename + "." + model_basename + 
         (".layer" + str(args.use_layer) if args.use_layer is not None else "") + ".npz"
         )

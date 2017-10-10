@@ -33,7 +33,7 @@ parameter_dict_ = {
     "layer_spec_str": "[100] * 8 + [39]",
     "dae_corruption": 0,  # these dae parameters specify which pretrained model to use
     "dae_max_epochs": 5,
-    "max_epochs": 60,
+    "max_epochs": sys.argv[4],
     "batch_size": 256,
     "learning_rate": 0.000025,
     "start_from_scratch": False,  # do not initialize from other model, but start from scratch
@@ -90,7 +90,7 @@ def train(parameter_dict):
     dae_yaml_fn = path.join(basedir, "yaml/dae_layer.yaml")
     mlp_pretrained_yaml_fn = path.join(basedir, "yaml/mlp_pretrained.yaml")
     mlp_linear_yaml_fn = path.join(basedir, "yaml/mlp_linear.yaml")
-    correspondence_ae_yaml_fn = path.join(basedir, "yaml/correspondence_ae.yaml")
+    correspondence_ae_yaml_fn = path.join(basedir, "yaml/retrain_cae.yaml")
 
     # Write parameters to file
     if not path.isdir(correspondence_ae_parameter_dict["save_path"]):
