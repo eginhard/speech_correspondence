@@ -29,11 +29,12 @@ parameter_dict_ = {
     "dataset_npy_fn_x": sys.argv[1],
     "dataset_npy_fn_y": sys.argv[2],
     "models_basedir": sys.argv[3],
+    "old_model": sys.argv[4],
     "dim_input": 39,
     "layer_spec_str": "[100] * 8 + [39]",
     "dae_corruption": 0,  # these dae parameters specify which pretrained model to use
     "dae_max_epochs": 5,
-    "max_epochs": sys.argv[4],
+    "max_epochs": int(sys.argv[5]),
     "batch_size": 256,
     "learning_rate": 0.000025,
     "start_from_scratch": False,  # do not initialize from other model, but start from scratch
@@ -76,6 +77,7 @@ def train(parameter_dict):
     correspondence_ae_parameter_dict = {
         "dataset_npy_fn_x": parameter_dict["dataset_npy_fn_x"],
         "dataset_npy_fn_y": parameter_dict["dataset_npy_fn_y"],
+        "old_model": parameter_dict["old_model"],
         "reverse": parameter_dict["reverse"],
         "nvis": parameter_dict["dim_input"],
         "batch_size": parameter_dict["batch_size"],

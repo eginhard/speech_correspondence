@@ -29,8 +29,8 @@ TRANSFORMER = "!obj:pylearn2.datasets.transformer_dataset.TransformerDataset"
 
 # Network parameter settings
 parameter_dict_ = {
-    "dataset_npy_fn": "../../../features/buckeye/mfcc/numpy/buckeye.mfcc.cmvn_dd.npy",
-    "models_basedir": "models/",
+    "dataset_npy_fn": sys.argv[1],
+    "models_basedir": sys.argv[2],
     "dim_input": 39,
     "layer_spec_str": "[100] * 8 + [39]",
     "corruption": 0,

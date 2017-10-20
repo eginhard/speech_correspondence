@@ -8,7 +8,7 @@
         reverse: %(reverse)s
     },
     model: !obj:pylearn2.monitor.push_monitor {
-        model: !pkl: "models_HA/100x8+39.batch_size256.corruption0.max_epochs5/correspondence_ae.frames1_cae_gold.train.max_epochs43.reverseTrue.pkl",
+        model: !pkl: "%(old_model)s",  # path to old model
         name: "old_monitor"
     },
     algorithm: !obj:pylearn2.training_algorithms.sgd.SGD {
