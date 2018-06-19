@@ -28,7 +28,7 @@ TRANSFORMER = "!obj:pylearn2.datasets.transformer_dataset.TransformerDataset"
 #-----------------------------------------------------------------------------#
 
 # Network parameter settings
-parameter_dict_ = {
+gp_parameter_dict = {
     "dataset_npy_fn": sys.argv[1],
     "models_basedir": sys.argv[2],
     "dim_input": 39,
@@ -37,7 +37,21 @@ parameter_dict_ = {
     "max_epochs": 5,
     "batch_size": 256,
     "learning_rate": 0.00025,
-    }
+}
+
+buck_tsonga_parameter_dict = {
+    "dataset_npy_fn": sys.argv[1],
+    "models_basedir": sys.argv[2],
+    "dim_input": 39,
+    "layer_spec_str": "[100] * 8 + [13]",
+    "corruption": 0,
+    "max_epochs": 5,
+    "batch_size": 256,
+    "learning_rate": 0.00025,
+}
+
+parameter_dict_ = buck_tsonga_parameter_dict
+#parameter_dict_ = gp_parameter_dict
 
 
 #-----------------------------------------------------------------------------#
